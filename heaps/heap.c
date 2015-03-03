@@ -166,9 +166,7 @@ void mergeFreeBlocks(uint32_t* prev,uint32_t* freeBlockptr){
 }
 heap_s* heap_new(uint32_t size) {
 /*Allocate contiguous memory for the heap*/
-    void* p = mmap(0, size, PROT_READ | PROT_WRITE,
-        MAP_ANONYMOUS | MAP_PRIVATE,
-        -1, 0);
+    void* p = mmap(0, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
     if (p == MAP_FAILED) {
         perror("mmap");
         exit(-1);

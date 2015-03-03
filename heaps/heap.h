@@ -2,7 +2,7 @@
 #define _HEAP_H_
 
 #include <stdint.h>
-
+#include <sys/mman.h>
 struct heap_struct{
  uint32_t required;
  uint32_t consumed;
