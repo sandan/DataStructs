@@ -1,0 +1,101 @@
+C program that implements a simple fixed-size heap.
+
+- implementation will track and report two important quantities:
+
+    * required: number of bytes asked for by the user program
+    * consumed: number of bytes actually used (accounting for heap overhead)
+    
+API:
+~~~~
+
+- heap_s                    -- a struct the represents the state of the heap
+- heap_s *heap_new(h,size)  -- create a new heap that can hold up to "size"
+                               of consumed bytes.
+- void* heap_malloc(h,size) -- allocate "size" bytes
+- void heap_free(h,ptr)     -- free the memory pointed at by "ptr". The behavior
+                               is only defined for values of "ptr" that were
+                               previously returned by heap_malloc
+- void heap_freeAll(h)      -- free all memory in the given heap
+- void heap_stats(h)        -- print heap statistics
+                                  <heap size> <consumed bytes> <required bytes>
+- uint32_t heap_relptr(h,p) -- print the offset of the given pointer relative
+                               to the start of the heap
+                             
+Notes:
+~~~~~~
+- heap_s occupies 16 bytes and uses the first 16 bytes of the memory used by
+  the heap
+
+- each allocated entry has 12 bytes of overhead and its total size is rounded
+  up to a multiple of 4. For example, heap_alloc(h,1) will consume 16 bytes:
+
+    * required = 1
+    * consumed = 16
+
+- entries consume a minimum of 16 bytes
+
+- the layout of the allocated memory will be
+
+   * 8 bytes of overhead
+   * the required bytes
+   * padding to enforce the consumed size rules:
+      - >= max(16,required+12)
+      - multiple of 4
+
+- when the heap is initialized, it will contain one free entry that consumes
+  the maximum amount of available memory in the heap (size - 16)
+
+- allocation proceeds as follows:
+
+   * the list of free entries is examined until one entry is large enough to
+     accommodate the request
+
+   * the entry is either used completely or split if more than 16 bytes will
+     be left after it is split
+
+   * if the entry is split, the upper part is used for the new allocation
+
+- freeing memory proceeds as follows:
+
+   * the entry is added to the start of the free list
+
+   * if either (or both) neighboring entries are free, they're removed from the
+     free list and merged with the entry
+
+Important files:
+~~~~~~~~~~~~~~~~
+
+   - main.c     -- the main program (to test)
+   - heap.h     -- the heap API
+   - heap.c     -- the heap implementation
+
+
+Error handling:
+~~~~~~~~~~~~~~~
+
+    - heap_malloc returns 0 when there is no room in the heap and leaves the
+      heap unchanged
+
+    - heap_free has undefined behavior if it's given a pointer that wasn't
+      returned by heap_malloc
+
+To compile:
+~~~~~~~~~~~
+
+    make
+
+To run test:
+~~~~~~~~~~~~
+
+    make clean test
+
+To make the output less noisy:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    make -s clean test
+
+To run by hand
+~~~~~~~~~~~~~~
+
+    make
+    ./heap

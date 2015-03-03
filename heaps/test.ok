@@ -1,0 +1,97 @@
+100 16 0
+allocate 1000000 failed
+100 16 0
+allocate 100 failed
+100 16 0
+allocate 85 failed
+100 16 0
+allocate 84 failed
+100 16 0
+allocate 73 failed
+100 16 0
+allocate 72 @24
+100 100 72
+allocate 1 failed
+100 100 72
+deallocate @24
+100 16 0
+allocate 1 @92
+100 32 1
+allocate 57 failed
+100 32 1
+allocate 56 @24
+100 100 57
+deallocate @92
+100 84 56
+allocate 5 failed
+100 84 56
+allocate 4 @92
+100 100 60
+deallocate @92
+100 84 56
+allocate 72 failed
+100 84 56
+deallocate @24
+100 16 0
+allocate 72 @24
+100 100 72
+deallocate @24
+100 16 0
+allocate 30 @64
+100 60 30
+allocate 30 failed
+100 60 30
+allocate 28 @24
+100 100 58
+deallocate @24
+100 60 30
+deallocate @64
+100 16 0
+allocate 72 @24
+100 100 72
+deallocate @24
+100 16 0
+allocate 4 @92
+100 32 4
+allocate 8 @72
+100 52 12
+allocate 36 @24
+100 100 48
+deallocate @92
+100 84 44
+deallocate @24
+100 36 8
+deallocate @72
+100 16 0
+allocate 72 @24
+100 100 72
+deallocate @24
+100 16 0
+allocate 10 @84
+100 40 10
+allocate 20 @52
+100 72 30
+allocate 8 @24
+100 100 38
+allocate 72 failed
+100 100 38
+freeAll
+100 16 0
+allocate 71 @24
+100 100 71
+freeAll
+100 16 0
+allocate 0 @92
+100 32 0
+allocate 0 @76
+100 48 0
+allocate 0 @60
+100 64 0
+allocate 0 @44
+100 80 0
+allocate 0 @24
+100 100 0
+allocate 0 failed
+100 100 0
+allocate 0 failed
+100 100 0
