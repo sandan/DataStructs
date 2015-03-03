@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -c -m64 -Wall -g -O2
-LD = $(CC)
+CFLAGS = -c -std=gnu99 -m32 -Wall -g -O2
+LD = $(CC) -m32
 LDFLAGS = -lpthread
 
 TARGET = main
