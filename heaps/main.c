@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "heap.h"
+#include "../headers/heap.h"
 
 heap_s *heap;
 

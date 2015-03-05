@@ -3,17 +3,9 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "../data/data.h"
 
 /**TODO: refactor this into its own subproject for data items**/
-//8-byte data items
-typedef struct {
- uint32_t x;
- uint32_t y;
- uint32_t z;
-} item_t;
-
-item_t sentinel = {-1,-1,-1};
-
 //the stack
 typedef struct {
  item_t *base;   //pointer to base of stack
@@ -23,11 +15,11 @@ typedef struct {
 
 //Stack API
 
-extern stack* create_stack(uint32_t size);
-extern void remove_stack(stack *st);
-extern int push(item_t i, stack *st);
-extern item_t pop(stack *st);
-extern item_t peek(stack *st);
-extern bool empty(stack *st);
+stack* create_stack(uint32_t size);
+void remove_stack(stack *st);
+int push(item_t i, stack *st);
+item_t pop(stack *st);
+item_t peek(stack *st);
+bool empty(stack *st);
 
 #endif
