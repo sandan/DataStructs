@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "cyclic_q.h"
+#include "cyclic_array_q.h"
 
 def ca_q* create_queue(uint32_t size){
   ca_q *q = (ca_q *) malloc(sizeof(ca_q));
