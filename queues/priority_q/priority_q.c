@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include "../../headers/priority_q.h"
+#include <limits.h>
 
 //int based priority queue based on min heap
 void pq_insert(pq *priority_q, int x){
-
-
+  priority_q->H->size+=1;
+  priority_q->H->heap[priority_q->H->size]=INT_MAX;
+  decrease_key(priority_q->H,priority_q->H->size,x);
 }
 
 int get_min(pq* priority_q){

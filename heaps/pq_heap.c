@@ -48,6 +48,17 @@ void min_heapify(heap *H, int i){
  }
 }
 
+//assumes the new value of key is at least as big as current key
+void decrease_key(heap* H, int i, int new){
+
+ if (new >= H->heap[i]) printf("error: new key is bigger than current key\n");
+
+ H->heap[i]=new; //decrease the current value of heap[i]
+ while (i > 1 && H->heap[parent(i)] > H->heap[i]){
+  pq_swap((H->heap)+i, (H->heap)+parent(i));
+  i=parent(i);
+ }
+}
 void build_min_heap(heap* H){
 //access the internal nodes stored in heap, just above the leaves
  for(int i=(H->size/2); i>=1; i--){
