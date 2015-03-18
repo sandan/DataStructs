@@ -6,9 +6,9 @@ tnode *search_tree(tnode *t, item_t data){
 
   if (t == NULL) return NULL;
   
-  if (t->data == data) return t;
+  if (t->data.data == data.data) return t;
 
-  if (t->data > data){
+  if (t->data.data > data.data){
     return search_tree(t->left, data);
   } else {
     return search_tree(t->right, data);
@@ -48,7 +48,7 @@ void traverse_tree(tnode *t){
 //in order traversal
   traverse_tree(t->left);
   //process current node
-  traverse_tree(t->rightt);
+  traverse_tree(t->right);
 }
 
 void insert_tree(tnode *t, item_t x, tnode *parent){
@@ -68,7 +68,7 @@ bool isLeaf(tnode *t){
 }
 
 bool isRoot(tnode* t){
-  return t->parent == NULL : true:false;
+  return t->parent == NULL ? true:false;
 }
 
 uint32_t max(uint32_t a, uint32_t b){
