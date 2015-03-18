@@ -29,8 +29,4 @@ tnode* find_min(tnode *t);
 tnode* find_max(tnode *t);
 void traverse_tree(tnode *t);
 
-int enqueue_dq(item_t i, dq *q);
-item_t dequeue_dq(dq *q);
-bool empty_dq(dq *q);
-
 #endif

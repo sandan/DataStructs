@@ -50,9 +50,29 @@ void traverse_tree(tnode *t){
   printf("[ %u ] ", t->data.data);
   //process current node
   traverse_tree(t->right);
+
+}
+void delete_subtree(tnode **root){
+  if ( *root == NULL ) return;
+  delete_subtree(&((*root)->left));
+  delete_subtree(&((*root)->right));
+  free(*root);
+  *root = NULL;
 }
 
-//helper method for insert
+//what we need is a pointer to root->left/right
+//or else no way to mutate the result for the parent
+/*
+void delete_subtree(tnode *root){
+  if ( root == NULL ) return;
+  delete_subtree(root->left);
+  delete_subtree(root->right);
+  free(root);
+  root = NULL;
+  
+}
+*/
+
 //what we need is a pointer to parent->left or parent->right
 // or else theres no way to associate parent->left/right 
 // with the new node we malloc'd, so not this:
@@ -165,7 +185,6 @@ int main(){
  
  insert(*a,root);
  traverse_tree(root);
- printf("root->left->data.data: %u\n",root->left->data.data);
 
  printf("\n");
  insert(*b,root);
@@ -173,6 +192,11 @@ int main(){
 
  printf("\n");
  insert(*c,root);
+ traverse_tree(root);
+
+ printf("\n");
+ delete_subtree(&(root->right));
+  
  traverse_tree(root);
 
  printf("\n");
