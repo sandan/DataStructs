@@ -1,6 +1,6 @@
 #include "../headers/binary_tree.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 
 tnode *search_tree(tnode *t, item_t data){
 
@@ -47,18 +47,23 @@ void traverse_tree(tnode *t){
   if ( t == NULL ) return;
 //in order traversal
   traverse_tree(t->left);
+  printf("[ %u ] ", t->data.data);
   //process current node
   traverse_tree(t->right);
 }
 
 //helper method for insert
+//what we need is a pointer to parent->left or parent->right
+// or else theres no way to associate parent->left/right 
+// with the new node we malloc'd, so not this:
+/*
 void insert_tree(tnode *t, item_t x, tnode *parent){
   if (t == NULL){
      t = (tnode*)(malloc(sizeof(tnode)));
      t->parent = parent;
      t->left = t->right = NULL;
      t->data = x;
-     parent->left = t;
+     return;
   }
 
   if (t->data.data > x.data){
@@ -69,13 +74,33 @@ void insert_tree(tnode *t, item_t x, tnode *parent){
   }
 }
 
+*/
+
+void insert_tree(tnode **t, item_t x, tnode *parent){
+  if (*t == NULL){
+     *t = (tnode*)(malloc(sizeof(tnode)));
+     (*t)->parent = parent;
+     (*t)->left = (*t)->right = NULL;
+     (*t)->data = x;
+     
+     return;
+  }
+
+  if ((*t)->data.data > x.data){
+    insert_tree(&((*t)->left), x, *t);
+
+  } else{
+    insert_tree(&((*t)->right), x, *t);
+  }
+}
+
 //insert takes the pointer of the root node and a data item to insert
 void insert(item_t x, tnode *parent){
 
   if (parent->data.data > x.data){
-    insert_tree(parent->left, x, parent);
+    insert_tree(&(parent->left), x, parent);
   }else {
-    insert_tree(parent->right, x, parent);
+    insert_tree(&(parent->right), x, parent);
   }
 }
 
@@ -122,4 +147,34 @@ uint32_t min_depth(tnode *t, uint32_t result){
  else return min(l,r);
 }
 
+int main(){
+
+ item_t* t = (item_t*)(malloc(sizeof(item_t)));
+ t->data = 10;
+ tnode* root = (tnode*)(malloc(sizeof(tnode)));
+ root->data=*t;
+
+ item_t* a = (item_t*)(malloc(sizeof(item_t)));
+ item_t* b = (item_t*)(malloc(sizeof(item_t)));
+ item_t* c = (item_t*)(malloc(sizeof(item_t)));
+ a->data = 1;
+ b->data = 20;
+ c->data = 15;
+
+ printf("root->data.data: %u\n", root->data.data);
+ 
+ insert(*a,root);
+ traverse_tree(root);
+ printf("root->left->data.data: %u\n",root->left->data.data);
+
+ printf("\n");
+ insert(*b,root);
+ traverse_tree(root);
+
+ printf("\n");
+ insert(*c,root);
+ traverse_tree(root);
+
+ printf("\n");
+}
 
