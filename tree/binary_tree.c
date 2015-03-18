@@ -51,15 +51,32 @@ void traverse_tree(tnode *t){
   traverse_tree(t->right);
 }
 
+//helper method for insert
 void insert_tree(tnode *t, item_t x, tnode *parent){
+  if (t == NULL){
+     t = (tnode*)(malloc(sizeof(tnode)));
+     t->parent = parent;
+     t->left = t->right = NULL;
+     t->data = x;
+     parent->left = t;
+  }
 
+  if (t->data.data > x.data){
+    insert_tree(t->left, x, t);
 
+  } else{
+    insert_tree(t->right, x, t);
+  }
+}
 
+//insert takes the pointer of the root node and a data item to insert
+void insert(item_t x, tnode *parent){
 
-
-
-
-
+  if (parent->data.data > x.data){
+    insert_tree(parent->left, x, parent);
+  }else {
+    insert_tree(parent->right, x, parent);
+  }
 }
 
 
