@@ -1,5 +1,6 @@
 
 /**
+ *  insertion sort 
  *  The idea is to mnake sure s[j-1] < s[j].
  *  As long as we swap cases where s[j] > s[j-1], we get the ascending sort.
  */
