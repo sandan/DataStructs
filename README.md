@@ -1,7 +1,7 @@
 # DataStructs
 
 
-things learned:
+notes:
 -if a header file t has
    include "path/to/header.h" 
  then the header file for the implementation (.c) files just needs 
