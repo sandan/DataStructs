@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "heap.h"
+#include "../headers/heap.h"
 
 heap_s *heap;
 
@@ -31,8 +31,9 @@ void freeAll() {
     heap_stats(heap);
 }
 
+//change to main to run ./main on compilation
 
-int main() {
+int run() {
 
     void* p;
     void* q;

@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "../headers/heap.h"
 #include <sys/mman.h>
 #include <stdio.h>
 #include <stdlib.h>

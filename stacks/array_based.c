@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "array_based.h"
-
+#include "../headers/array_based.h"
 
 //Stack API implementation
 

@@ -3,12 +3,12 @@ CFLAGS = -std=gnu99 -m32 -g -O0 -Wall -Werror
 CFILES = $(wildcard *.c)
 OFILES = $(subst .c,.o,$(CFILES))
 
-all : main
+all : run
 
 main : Makefile $(OFILES)
 	gcc $(CFLAGS) -o $@ $(OFILES)
 
-test.out : Makefile main
+test.out : Makefile run
 	./main > $@
 
 test : Makefile test.out
