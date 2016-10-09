@@ -40,7 +40,7 @@ int deallocate_row(row_t *src){
 		}
 		free(src->lens);
 		free(src->cols);
- 		//free(src);
+ 		//free(src); BAD! Don't want to free a stack address...
 	} else {
 		return 1;
 	}
