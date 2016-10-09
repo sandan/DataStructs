@@ -12,10 +12,10 @@ void swap (int *x, int *y) {
      }
 }
 
-void insertion_sort(int s[]){
+void insertion_sort(int s[], int len){
 
   int i,j;
-  int n = sizeof(s)/sizeof(int);
+  int n = len;
   for(i=0; i<n; i++){
    j=i;
    while ( (j>0) && (s[j] < s[j-1]) ){
@@ -28,8 +28,11 @@ void insertion_sort(int s[]){
 
 int test(void){
  int s[10]= {9,1,4,6,1,2,4,3,2,0}; 
- insertion_sort(s);
-
+ insertion_sort(s, 10);
+ int i;
+ for (i = 0; i < 10; i++)
+   printf("%d\n", s[i]);
+     
  return 1;
 }
 
